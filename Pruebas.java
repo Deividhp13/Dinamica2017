@@ -1,3 +1,5 @@
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
 public class Pruebas {
     private static String[] s={"ACATCGAATTC", "AGAATC", "ATTCAGGACC", "ACCAATTCACCG","AATTCCGG","ATCCGGATT","CCATCGAAGG"};
     private static String[][] resul={
