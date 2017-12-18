@@ -2,6 +2,10 @@ public  class Principal {
 
     public static String maxLong(String s1, String s2) {
         String retorno = "";
+        int pos1 = Integer.MIN_VALUE;
+        int pos2 = Integer. MIN_VALUE ;
+        int contador1 = 0 ;
+        int contador2 = 0 ;
         int mayor, menor;
 
         if (s1.length() >= s2.length()) {
@@ -12,37 +16,34 @@ public  class Principal {
             menor = s1.length() + 1;
         }
 
-        int cont = 0, pos = Integer.MIN_VALUE;
-        int[][] solucion = new int[2][mayor];
-
         for (int i = 1; i < mayor; i++) {
             for (int j = 1; j < menor; j++) {
-                if (s1.length() + 1 == mayor) {
-                    if (s1.charAt(i - 1) == s2.charAt((j - 1))) {
-                        solucion[i % 2][j] = solucion[(i - 1) % 2][j - 1] + 1;
-                        if (solucion[i % 2][j] > cont) {
-                            cont = solucion[i % 2][j];
-                            pos = j;
+                if(s1.charAt(i - 1) == s2.charAt(j - 1)) {
+                    if (pos1 == Integer.MIN_VALUE) {
+                        contador1++;
+                        pos1 = j;
+                    } else {
+                        if (pos2 == (j - 1)) {
+                            pos1 = j;
+                            contador1++;
+                        } else {
+                            if (contador1 > contador2) {
+                                pos2 = pos1;
+                                contador2 = contador1;
+                                contador1 = 0;
+                                pos1 = j;
+                            }
                         }
-                    } else
-                        solucion[i % 2][j] = 0;
-
-                } else {
-                    if (s2.charAt(i - 1) == s1.charAt((j - 1))) {
-                        solucion[i % 2][j] = solucion[(i - 1) % 2][j - 1] + 1;
-                        if (solucion[i % 2][j] > cont) {
-                            cont = solucion[i % 2][j];
-                            pos = j;
-                        }
-                    } else
-                        solucion[i % 2][j] = 0;
+                    }
                 }
             }
         }
-        if(pos == Integer.MIN_VALUE) retorno = "";
+        System.out.println(contador2);
+        System.out.println(pos2);
+
+        if(pos2 == Integer.MIN_VALUE) retorno = "";
         else{
-            if (s1.length() + 1 == mayor) retorno = s2.substring((pos - cont), pos);
-            else if (s2.length() + 1 == mayor) retorno =  s1.substring((pos - cont), pos);
+            return s2.substring((pos2 - contador2), pos2);
         }
         return retorno;
     }
