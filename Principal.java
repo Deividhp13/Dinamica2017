@@ -23,19 +23,26 @@ public  class Principal {
                         contador1++;
                         pos1 = j;
                     } else {
-                        if (pos2 == (j - 1)) {
+                        if (pos1 == (j - 1)) {
                             pos1 = j;
                             contador1++;
-                        } else {
-                            if (contador1 > contador2) {
-                                pos2 = pos1;
-                                contador2 = contador1;
-                                contador1 = 0;
-                                pos1 = j;
-                            }
+                        }
+                        else{
+
                         }
                     }
+                    if (contador1 > contador2) {
+                        pos2 = pos1;
+                        contador2 = contador1;
+                    }
                 }
+                else {
+                    contador1 = 0;
+                    pos1 = Integer.MIN_VALUE;
+                }
+
+
+
             }
         }
         System.out.println(contador2);
